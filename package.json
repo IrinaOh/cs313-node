@@ -1,0 +1,14 @@
+{
+  "name": "cs313-node-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Irina",
+  "license": "ISC",
+  "dependencies": {
+    "expresss": "0.0.0"
+  }
+}
