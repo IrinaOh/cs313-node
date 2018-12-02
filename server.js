@@ -4,7 +4,7 @@ const{Pool} = require("pg");
 const connectionString = process.env.DATABASE_URL || "postgres://postgres:password@localhost:5432/family"
 const pool = new Pool({connectionString: connectionString});
 app.set("port", (process.env.PORT||5000));
-app.get("/getPerson", getPerson)
+app.get("/", getPerson)
 app.listen(app.get("port"), function(){
     console.log("Now listening for connections on port: ", app.get("port"));
 });
