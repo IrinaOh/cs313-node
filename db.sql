@@ -9,9 +9,9 @@ INSERT INTO member(first_name, last_name) VALUES ('Sean', 'OHara');
 
 CREATE TABLE event(
 event_id SERIAL PRIMARY KEY NOT NULL,
-event_type VARCHAR(100) NOT NULL,
-event_day INTEGER NOT NULL,
-event_month VARCHAR(100) NOT NULL,
+event_name VARCHAR(100) NOT NULL,
+event_date DATE NOT NULL,
+event_time INTEGER NOT NULL
 event_location VARCHAR(100) NOT NULL,
 event_host INTEGER references member(id)
 );
@@ -31,7 +31,7 @@ event_id INTEGER references event(event_id)
 );
 
 INSERT INTO event
-	(event_type, event_date, event_time, event_location, event_host) 
+	(event_name, event_date, event_time, event_location, event_host) 
 VALUES 
 	('Thanksgiving', 24, "November", 'Bountiful', "Rachelle and Patrick Ohara"),
 	('Christmas Dinner', 25, 'December', 'Bountiful', 'Rachelle and Patrick Ohara');
