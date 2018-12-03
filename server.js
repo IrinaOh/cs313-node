@@ -8,6 +8,7 @@ app.get("/", getPerson)
 app.listen(app.get("port"), function(){
     console.log("Now listening for connections on port: ", app.get("port"));
 });
+
 function getPerson(req, res) {
     console.log("Getting person information");
     var id = req.query.id;
