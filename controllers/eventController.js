@@ -7,6 +7,7 @@ function getEventList(req, res) {
 	topicModel.getAllEvents(function(results){
 		res.json(results);
 	});
+}
 
 function getEvent(req, res) {
 	//get the single event by id
@@ -17,7 +18,8 @@ function getEvent(req, res) {
 
 	topicModel.getEventById(event_id, function(results){	
 		res.json(results);
-	})
+	});
+}
 
 function postEvent(req, res) {
 	var event_name = req.body.event_name;
