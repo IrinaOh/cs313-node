@@ -1,44 +1,58 @@
-function searchByEvent(req, res){
+function searchByEvent(event_id, callback){
+	console.log("Searching for db for event: " + event_name)
 
-	var id; //comes from query
-	commentModel.searchByMember(id, function(results){
-		res.json(results);
-	});
+	var results = {list:[{comment_id:1, comment_text:"Great event!"},
+		{comment_id:2, comment_text:"Test"}
+		]};
 
-	var event_id;
-	commentModel.searchByEvent(event_id, function(results){
-		res.json(results);
-	});
+	callback(null, results);
+}
+
+function searchByMember(id, callback){
+
+	var results = {list:[{comment_id:1, comment_text:"Great event!"},
+		{comment_id:2, comment_text:"Test"}
+		]};
+
+	callback(null, results);
 }
 
 function getCommentList(req, res){
 
-	commentModel.getCommentList(function(results){
-		res.json(results);
-	});
+	var results = {list:[{comment_id:1, comment_text:"Great event!"},
+		{comment_id:2, comment_text:"Test"}
+		]};
+
+	callback(null, results);
 }
 
-function getComment(req, res){
+function getComment(id, callback){
 
-	var id =1;
-	commentModel.getComment(id, function(results){
-		res.json(results);
-	});
+	var results = {comment_id:1, comment_text:"Great event!"};
+		
+	callback(null, results);
 }
 
-function postComment(req, res){
+function postComment(comment_text, callback){
 
-	var comment = "Great!";
-	commentModel.postComment(comment, function(results){
-		res.json(results);
-	});
+	var results = {success:true, 
+		comment:{comment_id:1, comment_text:comment_text}};
+
+	callback(null, results);
 }
 
 function assignCommentToEvent(req, res){
 
-	var comment_id = 1;
-	var event_id = 1;
-	commentModel.assignCommentToEvent(comment_id, event_id, function(results){
-		res.json(results);
-	});
+	var results = {success:true};
+
+	callback(null, results);
 }
+
+module.exports = {
+	searchByEvent: searchByEvent,
+	searchByMember: searchByMember,
+	getCommentList: getCommentList;
+	getComment: getComment;
+	postComment: postComment;
+	assignCommentToEvent: assignCommentToEvent;
+};

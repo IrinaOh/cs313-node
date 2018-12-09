@@ -28,3 +28,4 @@ function postEvent(req, res) {
 	eventModel.postEvent(event_name, function(results){
 		res.json();
 	});
+}
