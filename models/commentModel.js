@@ -1,11 +1,31 @@
+const {Pool} = require("pg");
+
+const db_url = process.env.DATABASE_URL;
+// console.log("DB URL: " + db_url);
+const pool = new Pool({connectionString:db_url});
+
+
 function searchByEvent(event_name, callback){
 	console.log("Searching for db for event: " + event_name);
 
-	var results = {list:[{id:1, event_name:event_name, comment_text:"Great event!"},
-		{id:2, event_name:event_name, comment_text:"Test"}
-		]};
+	var sql = "SELECT comment_id, comment_text, member_id, event_id FROM comment";
+	// var params = [event_name];
+	pool.query(sql, function(err, db_results) { //add params, to pool.query to select by clause
+		if (err) {
+			throw err;
+		} else{
+			// we got some successful results from db
+			// console.log("Back from the db with:");
+			// console.log(db_results);
 
-	callback(null, results);
+			var results = {
+				success:true,
+				list:db_results.rows
+				};
+
+			callback(null, results);
+		}
+	});
 }
 
 function searchByMember(id, callback){
