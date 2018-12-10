@@ -3,7 +3,8 @@ const eventModel = require("../models/eventModel.js");
 function getEventList(req, res) {
 	console.log("Getting all events");
 
-	eventModel.getAllEvents(function(results) {
+	var event_name = res.query;
+	eventModel.getAllEvents(event_name, function(error, results) {
 		res.json(results);
 	});
 }
