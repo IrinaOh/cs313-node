@@ -1,8 +1,8 @@
-function searchByEvent(event_id, callback){
-	console.log("Searching for db for event: " + event_name)
+function searchByEvent(event_name, callback){
+	console.log("Searching for db for event: " + event_name);
 
-	var results = {list:[{comment_id:1, comment_text:"Great event!"},
-		{comment_id:2, comment_text:"Test"}
+	var results = {list:[{id:1, event_name:event_name, comment_text:"Great event!"},
+		{id:2, event_name:event_name, comment_text:"Test"}
 		]};
 
 	callback(null, results);
@@ -17,7 +17,7 @@ function searchByMember(id, callback){
 	callback(null, results);
 }
 
-function getCommentList(req, res){
+function getAllComments(callback){
 
 	var results = {list:[{comment_id:1, comment_text:"Great event!"},
 		{comment_id:2, comment_text:"Test"}
@@ -26,14 +26,14 @@ function getCommentList(req, res){
 	callback(null, results);
 }
 
-function getComment(id, callback){
+function getCommentById(id, callback){
 
 	var results = {comment_id:1, comment_text:"Great event!"};
 		
 	callback(null, results);
 }
 
-function postComment(comment_text, callback){
+function insertNewComment(comment_text, callback){
 
 	var results = {success:true, 
 		comment:{comment_id:1, comment_text:comment_text}};
@@ -41,7 +41,7 @@ function postComment(comment_text, callback){
 	callback(null, results);
 }
 
-function assignCommentToEvent(req, res){
+function assignEventToComment(eventId, commentId, callback){
 
 	var results = {success:true};
 
@@ -51,8 +51,8 @@ function assignCommentToEvent(req, res){
 module.exports = {
 	searchByEvent: searchByEvent,
 	searchByMember: searchByMember,
-	getCommentList: getCommentList;
-	getComment: getComment;
-	postComment: postComment;
-	assignCommentToEvent: assignCommentToEvent;
+	getAllComments: getAllComments,
+	getCommentById: getCommentById,
+	insertNewComment: insertNewComment,
+	assignEventToComment: assignEventToComment
 };

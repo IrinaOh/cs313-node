@@ -1,31 +1,30 @@
 function getAllEvents(callback) {
 	// get all the events from DB
 
-	var results = {
+	var results= {
 		events:[
-		{event_id:1, event_name: "Thanksgiving"},
-		{event_id:2, event_name: "Christmas Dinner"}
+			{id:1, name:"Thanksgiving"},
+			{id:2, name:"Christmas"}
 		]
 	}
-	return results;
-
+	callback(results);
 }
 
-function getEventById(event_id, callback) {
+function getEventById(id, callback) {
 	// get the topic from DB that matches that id
 
-	var results = {event_id:event_id, event_name: "Christmas"};
-	return results;
+	var results = {id:id, name:"Hanukkah"};
+	callback(results);
 }
 
-function insertNewEvent(event_name, callback) {
+function insertNewEvent(name, callback) {
 	// create a new event in DB with the provided name
 	var results = {success:true};
-	return results;
+	callback(results);
 }
 
 module.exports = {
 	getAllEvents:getAllEvents,
 	getEventById: getEventById,
-	postEvent: postEvent
+	insertNewEvent: insertNewEvent
 };
