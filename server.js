@@ -12,7 +12,10 @@ app.use(express.json()); //support json encoded bodies
 app.use(express.urlencoded({extended: true})); //support url encoded bodies
 
 // app.get("/search", eventController.search);
-app.get("/home", eventController.getEventList);
+app.get("/", (req, res) => {
+	res.json({message:"login here"});
+});
+app.get("/events", eventController.getEventList);
 app.get("/event", eventController.getEvent);
 app.post("/event", eventController.postEvent);
 

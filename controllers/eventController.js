@@ -19,9 +19,13 @@ function getEvent(req, res) {
 }
 
 function postEvent(req, res) {
-	var name = req.body.name;
-	console.log("Creating a new event with name:" + name);
-	eventModel.insertNewEvent(name, function(results) {
+	console.log(req.body);
+	var event_name = req.body.event_name;
+	var event_date = req.body.event_date;
+	var event_location = req.body.event_location;
+	// var event_host = req.query.event_host;
+	console.log("Creating a new event with name:" + event_name);
+	eventModel.insertNewEvent(event_name, event_date, event_location, function(error, results) {
 		res.json(results);
 	});
 }
