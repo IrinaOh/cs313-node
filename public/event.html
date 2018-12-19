@@ -1,25 +1,18 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Family Event Planner</title>
-        <script src="events-clientside.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    </head>
-    <body>
-        <h1>Family Event Planner</h1>
-        <div>
-            <h2>All Events:</h2>
-            <button onclick="getAllEvents()">Show All Events</button>
-            <ul id="ulEvents">
-                
-            </ul>
-        </div>
-
-        <form action="/event" method="post">
-            <input type="text" name="event_name" placeholder="Event Name"><br />
-            <input type="text" name="event_date" placeholder='Event Date'><br />
-            <input type="text" name="event_location" placeholder='Event Location'><br />
-            <input type="submit" value="Create New Event">
-        </form>
-    </body>
+<head>
+	<title>Event</title>
+    <script src="events-clientside.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Family Event Planner</h1>
+    <div>
+        <h2></h2>
+<!--         <button onclick="getEventById()">Show Details</button> -->
+        <ul id="ulEvent">
+            
+        </ul>
+    </div>
+</body>
 </html>

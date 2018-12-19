@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css?family=NTR');
+@import url('https://fonts.googleapis.com/css?family=Archivo+Black|NTR|Rubik+Mono+One');
+*{
+  font-family: 'NTR', sans-serif;
+}
+html{
+  background-color: #000D29;
+}
+main, nav, footer{
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  /*background-color: #000D29;*/
+}
+nav{
+  height: 150px;
+}
+footer{
+  height: 300px;
+}
+h1{
+  color: white;
+  font-family: 'Archivo Black', sans-serif;
+}
+p{
+  color: white;
+}
+.container{
+  width: 50%;
+  position: relative;
+}
+/*form design*/
+.form-container{
+  display: flex;
+  flex-direction: column;
+  background-color: #118C8B;
+  width: 300px;
+  padding: 30px;
+  color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+label{
+  height: 20px;
+}
+input{
+  height: 30px;
+  margin: 5px 0 10px;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border: none;
+}
+button{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  height: 50px;
+  background-color: #F14D49;
+  text-transform: uppercase;
+  color: white;
+  margin: 10px 0;
+  width: 300px;
+  border: none;
+}
+button:hover{
+  background-color: #F2746B;
+}
+.small-btn{
+  width: 60px;
+  height: 30px;
+  background-color: #F2746B;
+  margin-right: 20px;
+}
+.small-btn:hover{
+  background-color: #BCA18D;
+}
+.nav-btn{
+}
+/*list design*/
+.list-container{
+  list-style: none;
+  padding-left: 0;
+}
+.list-container li{
+  background-color: aliceblue;
+  margin: 5px;
+  padding: 5px;
+}
+/*header design on login page*/
+.decor-hr{
+  width: 150px;
+  height: 5px;
+  margin: 0;
+  background-color: #F2746B;
+  border: none;
+}
+.header-text{
+  font-size: 50px;
+  margin: 20px 0;
+  line-height: 60px;
+}
+.text{
+  width: 80%;
+}
+.decor-div{
+  width: 200px;
+  height: 70px;
+  background-color: #BCA18D;
+  position: absolute;
+  z-index: -999;
+  top: 50px;
+  left: -10px;
+}
+/*footer design*/
+footer{
+  text-align: center;
+  flex-direction: column;
+}
+footer p{
+  margin: 0;
+  line-height: 20px;
+}

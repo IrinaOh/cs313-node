@@ -19,11 +19,46 @@ function getAllEvents(event_name, callback) {
 	});
 }
 
-function getEventById(id, callback) {
+function updateEventById(event_id, event_name, event_date, event_location, callback) {
 	// get the topic from DB that matches that id
+	var sql = "UPDATE event SET event_name = $1, event_date = $2, event_location = $3 WHERE event_id=$4";
+	var value = [event_name, event_date, event_location, event_id];
 
-	var results = {id:id, name:"Hanukkah"};
-	callback(results);
+	pool.query(sql, value, function(err, db_results) {
+		if(err){
+			throw err;
+		}else{
+			var results = {
+				success:true,
+				list:db_results.rows
+			};
+			callback(null, results);
+			console.log(results);
+		}
+	});
+	// var results = {id:id, name:"Hanukkah"};
+	// callback(results);
+}
+
+function getEventById(event_id, callback) {
+	// get the topic from DB that matches that id
+	var sql = "DELETE FROM event WHERE event_id=$1";
+	var value = [event_id];
+
+	pool.query(sql, value, function(err, db_results) {
+		if(err){
+			throw err;
+		}else{
+			var results = {
+				success:true,
+				list:db_results.rows
+			};
+			callback(null, results);
+			console.log(results);
+		}
+	});
+	// var results = {id:id, name:"Hanukkah"};
+	// callback(results);
 }
 
 function insertNewEvent(event_name, event_date, event_location, callback) {
@@ -40,7 +75,7 @@ function insertNewEvent(event_name, event_date, event_location, callback) {
 				list:db_results.rows
 			};
 			callback(null, results);
-			console.log("hello from model");
+			console.log(results);
 		}
 	});
 }

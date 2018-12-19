@@ -4,26 +4,83 @@ function getAllEvents(){
 	$.get("/events", function(data){
 		console.log("Back from the server with:");
 		console.log(data);
-
+		$("#ulEvents").html("");
 		for(var i = 0; i < data.list.length; i++){
 			var event = data.list[i];
 
-			$("#ulEvents").append("<li><a>" + event.event_name + "</a></li>");
-		}
-		
+			$("#ulEvents").append("<li><button class='small-btn' onclick='getEventById(" + event.event_id + ")'> Delete </button> <b>" + event.event_name + "</b> - date: " + event.event_date + ", location: " + event.event_location + " </li>");
+		}		
+	});
+}
+
+// function updateEvent(event_id){
+// 	//collect user's input
+// 	var eventName = $("#eventName").val();
+// 	var eventDate = $("#eventDate").val();
+// 	var eventLocation = $("#eventLocation").val();
+
+//     // Set up the parameters to send to the API
+//     var params = {
+//     	event_id:event_id,
+//     	event_name: eventName,
+// 		event_date: eventDate,
+// 		event_location: eventLocation
+// 	};
+
+// 	$.post("/updateEventById", params, function(data, status){
+// 		console.log("Back from the server with:");
+// 		console.log(data);	
+// 	});
+// 	$.get("/events", function(data){
+// 		$("#ulEvents").html("");
+// 		for(var i = 0; i < data.list.length; i++){
+// 			var event = data.list[i];
+
+// 			$("#ulEvents").append("<li onclick='getEventById(" + event.event_id + ")'><input type='hidden' id='" + event.event_id + "'><b>" + event.event_name + "</b> - date:" + event.event_date + ", location: " + event.event_location + " </li>");
+// 		}		
+// 	});
+// }
+
+function getEventById(event_id){
+	console.log("Getting event by id", event_id);
+	var params = {event_id:event_id};
+	$.post("/eventById", params, function(data, status){
+		console.log("Back from the server with:");
+		console.log(data);	
+	});
+	$.get("/events", function(data){
+		$("#ulEvents").html("");
+		for(var i = 0; i < data.list.length; i++){
+			var event = data.list[i];
+
+			$("#ulEvents").append("<li onclick='getEventById(" + event.event_id + ")'><input type='hidden' id='" + event.event_id + "'><b>" + event.event_name + "</b> - date:" + event.event_date + ", location: " + event.event_location + " </li>");
+		}		
 	});
 }
 
 function insertNewEvent(){
+	//collect user's input
+	var eventName = $("#eventName").val();
+	var eventDate = $("#eventDate").val();
+	var eventLocation = $("#eventLocation").val();
+
+    // Set up the parameters to send to the API
+    var params = {
+    	event_name: eventName,
+		event_date: eventDate,
+		event_location: eventLocation
+	};
 	console.log("Inserting new event client side");
 
-	$.get("/events", function(data){
+	$.post("/event", params, function(data, status){
 		console.log("Back from the server with:");
 		console.log(data);
-		for(var i = 0; i < data.list.length; i++){
-			var event = data.list[i];
+		console.log(status);
 
-			$("#ulEvents").append("<li><a>" + event.event_name + "</a></li>");
+		if (status == "success") {
+			$("#success-message").append("<p>New event was successfully added.</p>");
+		}else{
+			$("#success-message").append("<p>An error occurred adding new event.</p>");
 		}
 	});
 }
