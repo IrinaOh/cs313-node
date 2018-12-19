@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Family Event Planner</title>
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <script src="events-clientside.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <!-- <%- include('head'); %> -->
+    </head>
+    <body>
+        <nav><h1>Family Event Planner</h1></nav>
+        <main>
+            <div class="container">
+                <div class="form-container">
+                    <label for="eventName"> Event Name</label>
+                    <input type="text" id="eventName">
+                    <label for="eventDate"> Event Date</label>
+                    <input type="text" id="eventDate">
+                    <label for="eventLocation"> Event Location</label>
+                    <input type="text" id="eventLocation">
+                    <button onclick="insertNewEvent()">Add New Event</button>
+                </div>
+            </div>
+            <div class="container">
+                <button onclick="getAllEvents()">Show All Events</button>
+                <div id="message"></div>
+                <ul id="ulEvents" class="list-container"></ul>
+            </div>
+        </main>        
+        <div id="success-message"></div>
+        <footer></footer>
+    </body>
+</html>

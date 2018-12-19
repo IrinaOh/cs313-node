@@ -2,7 +2,6 @@ const express = require("express");
 const path = require("path");
 require("dotenv").config();
 const eventController = require("./controllers/eventController.js");
-const commentController = require("./controllers/commentController.js");
 const authController = require("./controllers/authController");
 const PORT  = process.env.PORT || 5000;
 
@@ -24,6 +23,7 @@ app.use(session({
 }));
 
 app.use(express.static(path.join(__dirname, "public")));
+app.set('views', path.resolve(__dirname, 'views'));
 app.use(express.json()); //support json encoded bodies
 app.use(express.urlencoded({extended: true})); //support url encoded bodies
 
@@ -37,15 +37,8 @@ app.post('/logout', handleLogout);
 app.get('/getServerTime', verifyLogin, getServerTime);
 
 app.get("/events", eventController.getEventList);
-// app.get("/updateEventById", eventController.updateEvent);
 app.post("/eventById", eventController.getEvent);
 app.post("/event", eventController.postEvent);
-
-// app.get("/search", commentController.search);
-// app.get("/comments", commentController.getCommentList);
-// app.get("/comment", commentController.getComment);
-// app.post("/comment", commentController.postComment);
-// app.post("assignEventToComment", commentController.assignEventToComment);
 
 app.listen(PORT, function() {
     console.log("Server listening on port " + PORT);
@@ -53,17 +46,19 @@ app.listen(PORT, function() {
 
 // Checks if the username and password match a hardcoded set
 // If they do, put the username on the session
-function handleLogin(request, response) {
+function handleLogin(req, res) {
 	var result = {success: false};
+	var login = req.body.login_name;
+	var pass = req.body.password;
 
-	var sql = "SELECT id, username, password FROM member WHERE event_id=$1";
-	var value = [request.body.username];
+	var sql = "SELECT first_name, last_name, password, login_name FROM member WHERE login_name=$1";
+	var value = [req.body.login_name];
 
 	pool.query(sql, value, function(err, db_results) {
 		if(err){
 			throw err;
-		}else if (request.body.username == "Ira" && request.body.password == "password") {
-			request.session.user = request.body.username;
+		}else if (req.body.login_name == login && req.body.password == pass) {
+			req.session.user = req.body.login_name;
 			// result = {success: true};
 			var results = {
 				success:true,
@@ -72,6 +67,7 @@ function handleLogin(request, response) {
 			callback(null, results);
 		}
 	});
+	res.render("./events");
 }
 
 // If a user is currently stored on the session, removes it
