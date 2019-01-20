@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 require("dotenv").config();
 const eventController = require("./controllers/eventController.js");
-const authController = require("./controllers/authController");
+// const authController = require("./controllers/authController");
 const PORT  = process.env.PORT || 5000;
 
 //remove this three lines:
